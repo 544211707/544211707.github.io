@@ -1,0 +1,494 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Fan">
+  <meta name="keywords" content="">
+  
+  <title>JS高级03_对象的创建、继承、GC - PolarBear</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                文章
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                关键字
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="JS高级03_对象的创建、继承、GC">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-08-29 20:19" pubdate>
+        2021年8月29日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      940 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      12
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">JS高级03_对象的创建、继承、GC</h1>
+            
+            <div class="markdown-body">
+              <h1 id="1-对象的创建（设计）模式"><a href="#1-对象的创建（设计）模式" class="headerlink" title="1. 对象的创建（设计）模式"></a>1. 对象的创建（设计）模式</h1><h2 id="1-Object构造函数模式"><a href="#1-Object构造函数模式" class="headerlink" title="1). Object构造函数模式"></a>1). Object构造函数模式</h2><p>缺点：语句多，流程繁杂</p>
+<pre><code>var obj = &#123;&#125;
+obj.name = &#39;Tom&#39;
+obj.setName = function(name)&#123;this.name=name&#125;
+</code></pre>
+<h2 id="2-对象字面量模式-一下都定义了"><a href="#2-对象字面量模式-一下都定义了" class="headerlink" title="2). 对象字面量模式 {}一下都定义了"></a>2). 对象字面量模式 {}一下都定义了</h2><p>优点：书写简单，直观。</p>
+<p>缺点：new多个实例对象的时候，重复代码多。</p>
+<pre><code>var obj = &#123;
+    name : &#39;Tom&#39;,
+    setName : function(name)&#123;this.name = name&#125;
+&#125;
+</code></pre>
+<h2 id="3-构造函数模式"><a href="#3-构造函数模式" class="headerlink" title="3). 构造函数模式"></a>3). 构造函数模式</h2><p>优点：可以大量new，避免重复代码</p>
+<p>缺点：不能明确区分属于哪一类</p>
+<pre><code>function Person(name, age) &#123;
+    this.name = name
+    this.age = age
+    this.setName = function(name)&#123;this.name=name&#125;
+&#125;
+new Person(&#39;tom&#39;, 12)
+</code></pre>
+<h2 id="4-构造函数-原型的组合模式"><a href="#4-构造函数-原型的组合模式" class="headerlink" title="4). 构造函数+原型的组合模式"></a>4). 构造函数+原型的组合模式</h2><p>方法<strong>写在原型</strong>上，可以不用每次new一个实例，都开辟出内存空间，比较省内存。</p>
+<pre><code>function Person(name, age) &#123;
+    this.name = name
+    this.age = age
+&#125;
+Person.prototype.setName = function(name)&#123;this.name=name&#125;
+new Person(&#39;tom&#39;, 12) 
+</code></pre>
+<h1 id="2-继承"><a href="#2-继承" class="headerlink" title="2. 继承"></a>2. 继承</h1><h2 id="1-原型链继承-继承方法"><a href="#1-原型链继承-继承方法" class="headerlink" title="1). 原型链继承 : 继承方法"></a>1). 原型链继承 : 继承方法</h2><ul>
+<li><p>子类的原型对象===父类的实例，例如:child.prototype = new Parent();</p>
+</li>
+<li><p>注意点:以上的步骤会导致子类原型的构造器属性丢失，所以需要手动添加构造器属性</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">child.prototype.constructor = child;<br><br><span class="hljs-keyword">function</span> <span class="hljs-constructor">Parent()</span>&#123;&#125;<br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Parent</span>.</span></span>prototype.test = <span class="hljs-keyword">function</span><span class="hljs-literal">()</span>&#123;&#125;<br><span class="hljs-keyword">function</span> <span class="hljs-constructor">Child()</span>&#123;&#125;<br><br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Child</span>.</span></span>prototype = <span class="hljs-keyword">new</span> <span class="hljs-constructor">Parent()</span> <span class="hljs-comment">//△子类原型指向父类的实例</span><br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Child</span>.</span></span>prototype.constructor = Child <span class="hljs-comment">//△然后手动校正 子类的构造器属性重新指向子类（因为上面的操作会新指向一个内存，而丢弃原有的原型对象内存，原有的是有构造器属性的。）</span><br><br>var child = <span class="hljs-keyword">new</span> <span class="hljs-constructor">Child()</span> <br>child.test<span class="hljs-literal">()</span> <span class="hljs-comment">//调用父类型的方法</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="2-借用构造函数-得到属性，无继承关系"><a href="#2-借用构造函数-得到属性，无继承关系" class="headerlink" title="2). 借用构造函数 : 得到属性，无继承关系"></a>2). 借用构造函数 : 得到属性，无继承关系</h2><ul>
+<li><p>在子类的构造函数中调用父类的构造函数-注意点:父类构造函数的this指向问题</p>
+</li>
+<li><p>解决方案:通过call/apply强制修改this的指向 —&gt; 当前子类的实例对象</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">function</span> <span class="hljs-constructor">Parent(<span class="hljs-params">xxx</span>)</span>&#123;this.xxx = xxx&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-constructor">Child(<span class="hljs-params">xxx</span>,<span class="hljs-params">yyy</span>)</span>&#123;<br>  <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Parent</span>.</span></span>call(this, xxx) <span class="hljs-comment">//△借用父类型的构造函数。不写this就window调用了，写半天也没把xxx属性写到子类上。</span><br>  <span class="hljs-comment">//或Parent.apply(this,[xxx]) apply与call用法不同，得是数组。</span><br>&#125;<br>var child = <span class="hljs-keyword">new</span> <span class="hljs-constructor">Child(&#x27;<span class="hljs-params">a</span>&#x27;, &#x27;<span class="hljs-params">b</span>&#x27;)</span>  <span class="hljs-comment">//child.xxx为&#x27;a&#x27;, 但child没有test()</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="3-组合"><a href="#3-组合" class="headerlink" title="3). 组合"></a>3). 组合</h2><pre><code>function Parent(xxx)&#123;this.xxx = xxx&#125;
+Parent.prototype.test = function()&#123;&#125;
+function Child(xxx,yyy)&#123;
+  Parent.call(this, xxx) //借用构造函数   this.Parent(xxx)
+&#125;
+Child.prototype = new Parent() //得到test()
+Child.prototype.constructor = Child
+var child = new Child() //child.xxx为&#39;a&#39;, 也有test()
+</code></pre>
+<h1 id="3-理解"><a href="#3-理解" class="headerlink" title="3. 理解"></a>3. 理解</h1><h2 id="1-定义一个函数背后做了什么"><a href="#1-定义一个函数背后做了什么" class="headerlink" title="1). 定义一个函数背后做了什么?"></a>1). 定义一个函数背后做了什么?</h2><pre><code>创建一个Function的实例对象
+给对象添加prototype属性, 其值为object空对象(原型对象)
+给原型对象添加constructor属性, 指向当前函数对象
+</code></pre>
+<h2 id="2-new一个对象背后做了些什么"><a href="#2-new一个对象背后做了些什么" class="headerlink" title="2). new一个对象背后做了些什么?"></a>2). new一个对象背后做了些什么?</h2><pre><code>创建一个新的空对象
+给对象设置__proto__, 值为构造函数对象的prototype属性值
+通过对象执行构造函数体(给对象添加属性/方法)
+</code></pre>
+<h1 id="垃圾回收GC"><a href="#垃圾回收GC" class="headerlink" title="垃圾回收GC"></a>垃圾回收GC</h1><p>garbage collection<br>垃圾回收机制：循环机制，反复检测环境中的垃圾</p>
+<h2 id="1-计数清除"><a href="#1-计数清除" class="headerlink" title="1.计数清除"></a>1.计数清除</h2><p>IE低版本，老的chrome<br>看内存的地址身上有几个指针指向，当一块内存地址身上指针个数为0，说明这块内存马上要被回收</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs nix">var <span class="hljs-attr">obj</span> = &#123;name : &#x27; kobe &#x27; &#125;<br><span class="hljs-attr">obj</span> = <span class="hljs-literal">null</span>;<br><br>//但是以下互相指的情况不会被GC<br>var <span class="hljs-attr">obj</span> = &#123;<br>	a: obj1<br>&#125;<br><br>var <span class="hljs-attr">obj1</span> = &#123;<br>	b: obj<br>&#125;<br><br><span class="hljs-attr">obj</span> = <span class="hljs-literal">null</span>;<br><span class="hljs-attr">obj1</span> = <span class="hljs-literal">null</span>;<br></code></pre></td></tr></table></figure>
+
+<h2 id="2-标记清除"><a href="#2-标记清除" class="headerlink" title="2.标记清除"></a>2.标记清除</h2><p>进入到代码行的环境以后检测到 需要使用的变量 就在其身上加一个进场标记，在代码执行完将return的时候，就会在 之前加标记的变量的身上 再添加一个出场标记</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/JavaScript/">JavaScript</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/08/29/JSadvance04/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JS高级04_进程与线程、浏览器模块、定时器、时间循环机制</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/08/29/JSadvance02/">
+                        <span class="hidden-mobile">JSadvance02</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

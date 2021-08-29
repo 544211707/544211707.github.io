@@ -1,0 +1,663 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Fan">
+  <meta name="keywords" content="">
+  
+  <title>JS高级01_类型、对象、函数、Git基本操作 - PolarBear</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                文章
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                关键字
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="JS高级01_类型、对象、函数、Git基本操作">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-08-29 20:09" pubdate>
+        2021年8月29日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      28
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">JS高级01_类型、对象、函数、Git基本操作</h1>
+            
+            <div class="markdown-body">
+              <h1 id="1-数据类型的分类和判断"><a href="#1-数据类型的分类和判断" class="headerlink" title="1. 数据类型的分类和判断"></a>1. 数据类型的分类和判断</h1><h2 id="1-基本-值-类型"><a href="#1-基本-值-类型" class="headerlink" title="1). 基本(值)类型"></a>1). 基本(值)类型</h2><pre><code>Number ----- 任意数值 -------- typeof
+String ----- 任意字符串 ------ typeof
+Boolean ---- true/false ----- typeof
+undefined --- undefined ----- typeof/===
+null -------- null ---------- ===
+</code></pre>
+<h2 id="2-对象-引用-类型"><a href="#2-对象-引用-类型" class="headerlink" title="2). 对象(引用)类型"></a>2). 对象(引用)类型</h2><pre><code>Object ----- typeof/instanceof
+Array ------ instanceof
+Function ---- typeof/instanceof
+</code></pre>
+<ol>
+<li><h2 id="数据类型分类-2大类"><a href="#数据类型分类-2大类" class="headerlink" title="数据类型分类(2大类)"></a>数据类型分类(2大类)</h2></li>
+</ol>
+<ul>
+<li><p>基本(值)类型（赋值的时候 值传递）</p>
+<ul>
+<li>Number: 任意数值</li>
+<li>String: 任意文本</li>
+<li>Boolean: true/false</li>
+<li>undefined: undefined</li>
+<li>null: null</li>
+</ul>
+</li>
+<li><p>对象(引用)类型（赋值的时候 引用传递）</p>
+<ul>
+<li><p>Object: 任意对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> obj = &#123;<span class="hljs-attr">name</span> : <span class="hljs-string">&#x27;kobe&#x27;</span>&#125;; <br><span class="hljs-comment">//obj是一个变量在栈里面 指向一个 在堆里的对象的 地址。=后面是一个对象的值</span><br><br><span class="hljs-keyword">var</span> a = <span class="hljs-literal">null</span>;<br>a = <span class="hljs-number">123</span>;<br><span class="hljs-keyword">var</span> b = a;<span class="hljs-comment">//值传递 因为此处把a指向的，即一个值赋值给了b</span><br>b = <span class="hljs-number">234</span>;<span class="hljs-comment">//b就改值了，不关a的事</span><br><span class="hljs-built_in">console</span>. log(a); <span class="hljs-comment">// 123</span><br><br><br><span class="hljs-keyword">var</span> obj = &#123;<span class="hljs-attr">name</span>: <span class="hljs-string">&quot;kobe&quot;</span>&#125;; <br><span class="hljs-keyword">var</span> obj2 = obj;<span class="hljs-comment">//因为是地址的传递 指向堆里面的对象的地址了</span><br>obj2.name = <span class="hljs-string">&#x27;wade&#x27;</span>;<span class="hljs-comment">//然后此处直接指人家里，把人名改了</span><br><span class="hljs-built_in">console</span>.log(obj);<span class="hljs-comment">//wade</span><br><br><span class="hljs-keyword">var</span> arr = [<span class="hljs-number">12</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>];<br><span class="hljs-keyword">var</span> arr2 = arr;<span class="hljs-comment">//引用传 arr2[1]= 234;</span><br><span class="hljs-built_in">console</span>.log(arr); <span class="hljs-comment">// [12，234，4]</span><br><br></code></pre></td></tr></table></figure></li>
+<li><p>Array: 特别的对象类型(下标/内部数据有序)</p>
+</li>
+<li><p>Function: 特别的对象类型(可执行)</p>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li><h2 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h2></li>
+</ol>
+<ul>
+<li><p>typeof:检测数据类型</p>
+<ul>
+<li>可以区别: string number booLean undefined object（null、array也是o） function</li>
+<li>不能区别: null与对象, 数组与一般对象</li>
+</ul>
+</li>
+<li><p>instanceof</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">A</span> instanceof <span class="hljs-selector-tag">B</span> 判断<span class="hljs-selector-tag">A</span>是否是<span class="hljs-selector-tag">B</span>的实例<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>专门用来判断对象数据的类型: Object, Array与Function</li>
+</ul>
+</li>
+<li><p>===</p>
+<ul>
+<li>可以判断: undefined和null</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li><h2 id="undefined与null的区别"><a href="#undefined与null的区别" class="headerlink" title="undefined与null的区别?"></a>undefined与null的区别?</h2></li>
+</ol>
+<ul>
+<li><p>undefined代表没有赋值，未定义</p>
+</li>
+<li><p>null代表赋值了, 只是值为null</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript"><span class="hljs-built_in">console</span>.log(<span class="hljs-literal">null</span> == <span class="hljs-literal">undefined</span>); //<span class="hljs-literal">true</span> <span class="hljs-literal">undefined</span>来自于<span class="hljs-literal">null</span><br><span class="hljs-built_in">console</span>.log(<span class="hljs-literal">null</span>=== <span class="hljs-literal">undefined</span>); <span class="hljs-regexp">//</span> <span class="hljs-literal">false</span> 类型不一样<br></code></pre></td></tr></table></figure></li>
+</ul>
+<ol start="2">
+<li><h2 id="什么时候给变量赋值为null呢"><a href="#什么时候给变量赋值为null呢" class="headerlink" title="什么时候给变量赋值为null呢?"></a>什么时候给变量赋值为null呢?</h2></li>
+</ol>
+<ul>
+<li>var a = null //a将指向一个对象, 但对象此时还没有确定</li>
+<li>a = null //让a指向的对象成为垃圾对象</li>
+</ul>
+<ol start="3">
+<li>严格区别变量类型与数据类型?</li>
+</ol>
+<ul>
+<li>js的变量本身是没有类型的, 变量的类型实际上是变量内存中数据的类型</li>
+<li>变量类型:<ul>
+<li>基本类型: 保存基本类型数据的变量</li>
+<li>引用类型: 保存对象地址值的变量</li>
+</ul>
+</li>
+<li>数据对象<ul>
+<li>基本类型</li>
+<li>对象类型</li>
+</ul>
+</li>
+</ul>
+<h1 id="2-数据-变量-内存的理解"><a href="#2-数据-变量-内存的理解" class="headerlink" title="2. 数据,变量, 内存的理解"></a>2. 数据,变量, 内存的理解</h1><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs stata">问题: JS引擎如何管理内存?<br>  1. 内存生命周期<br>    1). 分配需要的内存<br>    2). 使用分配到的内存<br>    3). 不需要时将其释放/归还<br>  2. 释放内存<br><span class="hljs-comment">    * 为执行函数分配的栈空间内存: 函数执行完自动释放</span><br><span class="hljs-comment">    * 存储对象的堆空间内存: 当内存没有引用指向时, 对象成为垃圾对象, 垃圾回收器后面就会回收释放此内存</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="1-什么是数据"><a href="#1-什么是数据" class="headerlink" title="1). 什么是数据?"></a>1). 什么是数据?</h2><pre><code>在内存中可读的, 可传递的保存了特定信息的&#39;东东&#39;
+一切皆数据, 函数也是数据
+在内存中的所有操作的目标: 数据
+</code></pre>
+<h2 id="2-什么是变量"><a href="#2-什么是变量" class="headerlink" title="2). 什么是变量?"></a>2). 什么是变量?</h2><pre><code>在程序运行过程中它的值是允许改变的量
+一个变量对应一块小内存, 它的值保存在此内存中  
+</code></pre>
+<h2 id="3-什么是内存"><a href="#3-什么是内存" class="headerlink" title="3). 什么是内存?"></a>3). 什么是内存?</h2><pre><code>内存条通电后产生的存储空间(临时的)
+一块内存包含2个方面的数据
+    内部存储的数据
+    地址值数据
+内存空间的分类
+    栈空间: 全局变量和局部变量
+    堆空间: 对象 
+</code></pre>
+<h2 id="4-内存-数据-变量三者之间的关系"><a href="#4-内存-数据-变量三者之间的关系" class="headerlink" title="4). 内存,数据, 变量三者之间的关系"></a>4). 内存,数据, 变量三者之间的关系</h2><pre><code>内存是容器, 用来存储不同数据
+变量是内存的标识, 通过变量我们可以操作(读/写)内存中的数据  
+</code></pre>
+<h1 id="3-对象的理解和使用"><a href="#3-对象的理解和使用" class="headerlink" title="3. 对象的理解和使用"></a>3. 对象的理解和使用</h1><h2 id="1-什么是对象"><a href="#1-什么是对象" class="headerlink" title="1). 什么是对象?"></a>1). 什么是对象?</h2><pre><code>多个数据(对象)的集合
+用来保存多个数据(对象)的容器
+</code></pre>
+<h2 id="2-属性组成"><a href="#2-属性组成" class="headerlink" title="2). 属性组成:"></a>2). 属性组成:</h2><pre><code>属性名 : 字符串(标识)
+属性值 : 任意类型
+</code></pre>
+<h2 id="3-属性的分类"><a href="#3-属性的分类" class="headerlink" title="3). 属性的分类:"></a>3). 属性的分类:</h2><pre><code>一般 : 属性值不是function  描述对象的状态
+方法 : 属性值为function的属性  描述对象的行为
+</code></pre>
+<h2 id="4-特别的对象"><a href="#4-特别的对象" class="headerlink" title="4). 特别的对象"></a>4). 特别的对象</h2><pre><code>数组: 属性名是0,1,2,3之类的索引
+函数: 可以执行的
+</code></pre>
+<h2 id="5-如何操作内部属性-方法"><a href="#5-如何操作内部属性-方法" class="headerlink" title="5). 如何操作内部属性(方法)"></a>5). 如何操作内部属性(方法)</h2><pre><code>对象.属性名 = 
+对象[&#39;属性名&#39;] = 属性名有特殊字符/属性名是一个变量
+</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs javascript">对象[变量] = 此时不加单引号，直接引用了变量的值<br><span class="hljs-keyword">var</span> xxx = <span class="hljs-string">&#x27;sex&#x27;</span>;<br><span class="hljs-keyword">var</span> obj = &#123;<br><span class="hljs-attr">str</span>: <span class="hljs-string">&#x27;abc&#x27;</span>,<br><span class="hljs-attr">num</span>: <span class="hljs-number">123</span>&#125;<br><span class="hljs-built_in">console</span>.log(obj.str);<br><span class="hljs-comment">//对象中的key一定是字符串</span><br>obj[xxx] =<span class="hljs-string">&#x27;男&#x27;</span>;<br><span class="hljs-built_in">console</span>.log(obj);<span class="hljs-comment">// &#123;sex:&#x27;男&#x27;&#125;！</span><br><br><span class="hljs-comment">//对象中的key一定是字符串 也就是a[]框里的就是key，自动调用了toString</span><br><span class="hljs-built_in">console</span>.log(num.toString());<br><span class="hljs-built_in">console</span>.log(obj1.toString());<span class="hljs-comment">//[object Object]</span><br><span class="hljs-keyword">var</span> a = &#123;&#125;<br><span class="hljs-keyword">var</span> obj1 = &#123;<span class="hljs-attr">n</span>: <span class="hljs-number">2</span>&#125;<br><span class="hljs-keyword">var</span> obj2 = &#123;<span class="hljs-attr">m</span>: <span class="hljs-number">3</span>&#125;<br>a[obj1] = <span class="hljs-number">4</span><br><span class="hljs-comment">//调用对象的时候用了toString 相当于两行a[&#x27;[object Object]&#x27;] = 4，5</span><br>a[obj2] = <span class="hljs-number">5</span><br><span class="hljs-built_in">console</span>.log(a[obj1]) <span class="hljs-comment">// 输出多少? 5</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sqf">var obj =&#123;<span class="hljs-built_in">name</span>: <span class="hljs-string">&#x27;kobe&#x27;</span>&#125;<br>obj = &#123;<span class="hljs-built_in">name</span> : <span class="hljs-string">&#x27;kobe&#x27;</span>&#125; <span class="hljs-comment">//指向了一个新对象（栈里存的 堆内存的地址变了），只不过对象和刚才长得一样。</span><br>obj.<span class="hljs-built_in">name</span> = <span class="hljs-string">&#x27;wade&#x27;</span><span class="hljs-comment">//这个没指向新的，只是在上面的对象属性里修改了。</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="4-函数的理解和使用"><a href="#4-函数的理解和使用" class="headerlink" title="4. 函数的理解和使用"></a>4. 函数的理解和使用</h1><h2 id="1-什么是函数"><a href="#1-什么是函数" class="headerlink" title="1). 什么是函数?"></a>1). 什么是函数?</h2><pre><code>用来实现特定功能的, n条语句的封装体
+只有函数类型的数据是可以执行的, 其它的都不可以
+</code></pre>
+<h2 id="2-为什么要用函数"><a href="#2-为什么要用函数" class="headerlink" title="2). 为什么要用函数?"></a>2). 为什么要用函数?</h2><pre><code>提高复用性
+便于阅读交流
+</code></pre>
+<h2 id="3-函数也是对象"><a href="#3-函数也是对象" class="headerlink" title="3). 函数也是对象"></a>3). 函数也是对象</h2><pre><code>instanceof Object===true
+函数有属性: prototype
+函数有方法: call()/apply()
+可以添加新的属性/方法
+</code></pre>
+<h2 id="4-函数的调用"><a href="#4-函数的调用" class="headerlink" title="4). 函数的调用"></a>4). 函数的调用</h2><p>1一般函数 : 直接调用 函数自调用 === window.函数调用</p>
+<p>2构造函数 : 通过new调用 实例化对象。this指向的当前构造函数的实例对象。<br>构造函数名可以是小写。但是一般构造函数都是首字母大写</p>
+<pre><code>function person(name,age) &#123;
+    this.name = name;
+    this.age = age;
+    this.eat = function () iconsole.log( &#39;吃东西&quot;);&#125;
+    &#125;
+    
+    var person1 = new Person( &#39; kobe&#39; ,42);
+    var person2 = new Person( &quot; wade&#39; ,38);|
+</code></pre>
+<p>​    3回调函数 : callback 事件的回调 定时器的回调</p>
+<p>​    4call apply 强制改变this，我理解即指定对象调用函数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> obj4 = &#123;<span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;kobe&#x27;</span>&#125;<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fun3</span>(<span class="hljs-params"> </span>)</span>&#123;<br>	<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>)<br>&#125;<br>fun3(); \\ <span class="hljs-built_in">this</span> ---&gt; <span class="hljs-built_in">window</span><br>fun3.call(obj4)<br>fun3.apply(obj4)<br></code></pre></td></tr></table></figure>
+
+
+
+
+<h2 id="5-函数中的this"><a href="#5-函数中的this" class="headerlink" title="5). 函数中的this"></a>5). 函数中的this</h2><p>this是什么?<br>  1 一个关键字, 一个内置的引用变量</p>
+<p>  2 this本身是一个内置的变量 此变量用于指向一个对象</p>
+<p> 3 this有两种：</p>
+<ul>
+<li>全局this = window<br>两种的例子：</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs kotlin">    function <span class="hljs-function"><span class="hljs-title">fun</span><span class="hljs-params">()</span></span> &#123;<br>    console.log(<span class="hljs-keyword">this</span>);<br>    <span class="hljs-keyword">this</span>.name = <span class="hljs-string">&#x27;kobe&#x27;</span><span class="hljs-comment">//可以不写死</span><br>&#125;<br><br>window.<span class="hljs-keyword">fun</span>();<span class="hljs-comment">//this 是 window</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li> 局部（函数）this = 调用此函数的对象；</li>
+</ul>
+<p>   构造函数this = 当前构造函数的实例对象</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript"><span class="hljs-keyword">new</span> fun();<span class="hljs-regexp">//</span>只要<span class="hljs-keyword">new</span>了，里面的<span class="hljs-built_in">this</span>就一定指的实例对象。这里的<span class="hljs-built_in">this</span>是实例对象，只不过不像下面一行有接收，所以这里<span class="hljs-built_in">this</span>显示为<span class="hljs-literal">undefined</span><br><br>//fun 其实等于var fun1 = <span class="hljs-keyword">new</span> fun();实例对象fun1 上面只不过没定义接收的变量<br></code></pre></td></tr></table></figure>
+
+<p>​       另：new操作符语法: new function( );<br>​       1．创建空对象<br>​       2．执行函数<br>​       3．确认this 的指向 指向堆中的哪里: this —&gt;创建空对象<br>​       4．返回执行的结果<br>​       可以拿一个构造函数来理解</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Person</span><span class="hljs-params">( name, age)</span> </span>&#123;<br>    <span class="hljs-comment">//1.创建空对象&#123;&#125;</span><br>    <span class="hljs-keyword">this</span>.name = name;<br>    <span class="hljs-keyword">this</span>.age = age;<br>&#125;<br><br><span class="hljs-keyword">var</span> person1 = <span class="hljs-keyword">new</span> Person( <span class="hljs-string">&#x27;KOBE&#x27;</span>， <span class="hljs-number">41</span>)<br><span class="hljs-comment">// &#123;name : &#x27;xxx&#x27; , age: xxx&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p> 4 特殊this：call apply 强制修改this</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">fun.call(obj);<span class="hljs-regexp">//</span>obj<br></code></pre></td></tr></table></figure>
+
+
+<p>​    显式指定谁: obj.xxx()<br>​    通过call/apply指定谁调用: xxx.call(obj)<br>​    不指定谁调用: xxx()  : window<br>​    回调函数: 看背后是通过谁来调用的: window/其它</p>
+<h2 id="6-匿名函数自调用（立即调用）-IIEF"><a href="#6-匿名函数自调用（立即调用）-IIEF" class="headerlink" title="6). 匿名函数自调用（立即调用）:IIEF"></a>6). 匿名函数自调用（立即调用）:IIEF</h2><p>特点：</p>
+<pre><code>特点:
+1．只执行一次
+2．什么时候执行:代码执行到函数位置立即执行
+3．内部的数据是私有的
+-----------------
+//内部的数据是私有的
+(function () &#123;
+var num = 123;
+&#125;)()
+console.Log(num);//报错，num未定义。因为看不到自调用函数里面数据了
+
+-----------------
+(function()&#123;
+  //实现代码
+&#125;)()
+专业术语为: IIFE (Immediately Invoked Function Expression) 立即调用函数表达式                          
+</code></pre>
+<h2 id="7-回调函数的理解△"><a href="#7-回调函数的理解△" class="headerlink" title="7). 回调函数的理解△"></a>7). 回调函数的理解△</h2><pre><code>1什么函数才是回调函数?
+    你定义的
+    你没有调用
+    但它最终执行了(在一定条件下 或某个时刻) 回头调用!!
+2常用的回调函数
+    dom事件回调函数(如按钮)
+    定时器回调函数
+    ajax请求回调函数(后面讲解)
+    生命周期回调函数(后面讲解)
+</code></pre>
+<h1 id="git管理项目"><a href="#git管理项目" class="headerlink" title="git管理项目"></a>git管理项目</h1><h2 id="1-创建本地仓库"><a href="#1-创建本地仓库" class="headerlink" title="1). 创建本地仓库"></a>1). 创建本地仓库</h2><pre><code>创建.gitignore配置文件
+git init
+git add *
+git commit -m &quot;xxx&quot;
+</code></pre>
+<h2 id="2-创建github远程仓库"><a href="#2-创建github远程仓库" class="headerlink" title="2). 创建github远程仓库"></a>2). 创建github远程仓库</h2><pre><code>New Repository
+指定名称
+创建
+</code></pre>
+<h2 id="3-将本地仓库推送到远程仓库"><a href="#3-将本地仓库推送到远程仓库" class="headerlink" title="3). 将本地仓库推送到远程仓库"></a>3). 将本地仓库推送到远程仓库</h2><pre><code>git remote add origin https://github.com/zxfjd3g/170612_JSAdvance.git 关联远程仓库
+git push origin master
+</code></pre>
+<h2 id="4-push本地的更新"><a href="#4-push本地的更新" class="headerlink" title="4). push本地的更新"></a>4). push本地的更新</h2><pre><code>git add *
+git commit -m &quot;xxx&quot;
+git push origin master
+</code></pre>
+<h2 id="5-克隆github上的项目"><a href="#5-克隆github上的项目" class="headerlink" title="5). 克隆github上的项目:"></a>5). 克隆github上的项目:</h2><pre><code>git clone https://github.com/zxfjd3g/170612_JSAdvance.git
+</code></pre>
+<h2 id="6-pull远程的更新"><a href="#6-pull远程的更新" class="headerlink" title="6). pull远程的更新"></a>6). pull远程的更新</h2><pre><code>git pull origin master
+</code></pre>
+<h2 id="7-撤消本地修改"><a href="#7-撤消本地修改" class="headerlink" title="7). 撤消本地修改"></a>7). 撤消本地修改</h2><pre><code>git status  查看变化
+git checkout -- xxx文件  撤消指定文件的修改
+</code></pre>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/JavaScript/">JavaScript</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/08/29/JSadvance02/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JSadvance02</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/08/29/Java-function/">
+                        <span class="hidden-mobile">Java各类的常用方法总结</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

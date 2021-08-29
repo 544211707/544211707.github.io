@@ -18,7 +18,7 @@
   <meta name="author" content="Fan">
   <meta name="keywords" content="">
   
-  <title>Hello World - PolarBear</title>
+  <title>roslaunch找不到包 详细 ros 工作空间 永久添加环境变量 - PolarBear</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -163,7 +163,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Hello World">
+            <span class="h2" id="subtitle" title="roslaunch找不到包 详细 ros 工作空间 永久添加环境变量">
               
             </span>
 
@@ -173,8 +173,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-08-28 10:18" pubdate>
-        2021年8月28日 上午
+      <time datetime="2021-05-27 21:24" pubdate>
+        2021年5月27日 晚上
       </time>
     </span>
   
@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      75 字
+      465 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      5
        分钟
     </span>
   
@@ -225,27 +225,53 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Hello World</h1>
+            <h1 style="display: none">roslaunch找不到包 详细 ros 工作空间 永久添加环境变量</h1>
             
             <div class="markdown-body">
-              <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
+              <p>roslaunch一个包时报错:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">[aaa] is neither a launch file <span class="hljs-keyword">in</span> package [aaaa] nor is [aaaa] a launch file name<br>The traceback <span class="hljs-keyword">for</span> the exception was written to the <span class="hljs-built_in">log</span> file<br></code></pre></td></tr></table></figure>
+<p>ubuntu16.04使用ros包时找不到,需要创建+编译工作空间,设置环境变量解决.</p>
+<p>ros小白看了好多帖子都不可以 去B站上找了一个视频一试即成功,把它整理成文字版.如果还是不懂的话可以去看视频<br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1YK4y1P7jS?from=search&seid=685743644250064773">https://www.bilibili.com/video/BV1YK4y1P7jS?from=search&amp;seid=685743644250064773</a></p>
+<h2 id="一-创建工作空间"><a href="#一-创建工作空间" class="headerlink" title="一.创建工作空间"></a>一.创建工作空间</h2><p>1.创建文件夹,这里可以是任意位置,也可以是任意名称</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">mkdir -p ~/xxx/src<br></code></pre></td></tr></table></figure>
+<p>2.进入文件夹</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ~/xxx/src<br></code></pre></td></tr></table></figure>
+<p>3.将你的包放到src中,并初始化工作空间.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">catkin_init_workspace<br></code></pre></td></tr></table></figure>
+<h2 id="二-编译工作空间"><a href="#二-编译工作空间" class="headerlink" title="二.编译工作空间"></a>二.编译工作空间</h2><p>1.回到工作空间路径下,从src返回工作空间,即到xxx目录下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span>..<br></code></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
+<p>2.编译工作空间,编译过后就会多出两个文件夹,build和devel</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">catkin_make<br></code></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/202105272056222.png" srcset="/img/loading.gif" lazyload alt="编译工作空间后"><br>编译过后xxx文件夹下如图所示,例此处 xxx 为 tuw_multi_robot.</p>
+<h2 id="三-设置环境变量-告诉系统这是工作空间的一个路径-建议直接跳2永久添加进系统"><a href="#三-设置环境变量-告诉系统这是工作空间的一个路径-建议直接跳2永久添加进系统" class="headerlink" title="三.设置环境变量,告诉系统这是工作空间的一个路径,建议直接跳2永久添加进系统!!"></a>三.设置环境变量,告诉系统这是工作空间的一个路径,<strong>建议直接跳2永久添加进系统!!</strong></h2><p>1.添加环境变量,还是在上面的xxx文件夹下.(建议直接用2)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> devel/setup.bash<br></code></pre></td></tr></table></figure>
+<p>查看添加是否成功,执行此命令后能看到xxx就是成功了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-variable">$ROS_PACKAGE_PATH</span><br></code></pre></td></tr></table></figure>
+<p>此时,再roslaunch你的包就可以了.<br>不过!!!!当我们重新打开一个终端roslaunch的时候,还是找不到,原因是没有将路径全局地写进系统.</p>
+<p>2.永久添加环境变量</p>
+<p>2.1 写入.bashrc文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">gedit ~/.bashrc<br></code></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
+<p>2.2 在.bashrc最下面加入环境变量,把xxx的文件路径加上devel/setup.bash,source进去.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> ......./xxx/devel/setup.bash<br></code></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20210527211106879.png" srcset="/img/loading.gif" lazyload alt="bashrc加入环境变量"><br>编辑好后点击save</p>
+<p>2.3 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> devel/setup.bash<br></code></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p>此时roslaunch应该也可以了.</p>
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/MARL/">MARL</a>
+                    
+                  </div>
                 
                 
               </div>
@@ -261,9 +287,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/08/29/Java-function/">
+                      <a href="/2021/08/28/hello-world/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Java各类的常用方法总结</span>
+                        <span class="hidden-mobile">Hello World</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -271,8 +297,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/05/27/roslaunch/">
-                        <span class="hidden-mobile">roslaunch找不到包 详细 ros 工作空间 永久添加环境变量</span>
+                      <a href="/2021/01/19/vrep/">
+                        <span class="hidden-mobile">ubuntu16.04启动vrep V4.1.0、使用python API需要的文件</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

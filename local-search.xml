@@ -111,5 +111,43 @@
   
   
   
+  <entry>
+    <title>roslaunch找不到包 详细 ros 工作空间 永久添加环境变量</title>
+    <link href="/2021/05/27/roslaunch/"/>
+    <url>/2021/05/27/roslaunch/</url>
+    
+    <content type="html"><![CDATA[<p>roslaunch一个包时报错:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">[aaa] is neither a launch file <span class="hljs-keyword">in</span> package [aaaa] nor is [aaaa] a launch file name<br>The traceback <span class="hljs-keyword">for</span> the exception was written to the <span class="hljs-built_in">log</span> file<br></code></pre></td></tr></table></figure><p>ubuntu16.04使用ros包时找不到,需要创建+编译工作空间,设置环境变量解决.</p><p>ros小白看了好多帖子都不可以 去B站上找了一个视频一试即成功,把它整理成文字版.如果还是不懂的话可以去看视频<br><a href="https://www.bilibili.com/video/BV1YK4y1P7jS?from=search&seid=685743644250064773">https://www.bilibili.com/video/BV1YK4y1P7jS?from=search&amp;seid=685743644250064773</a></p><h2 id="一-创建工作空间"><a href="#一-创建工作空间" class="headerlink" title="一.创建工作空间"></a>一.创建工作空间</h2><p>1.创建文件夹,这里可以是任意位置,也可以是任意名称</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">mkdir -p ~/xxx/src<br></code></pre></td></tr></table></figure><p>2.进入文件夹</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ~/xxx/src<br></code></pre></td></tr></table></figure><p>3.将你的包放到src中,并初始化工作空间.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">catkin_init_workspace<br></code></pre></td></tr></table></figure><h2 id="二-编译工作空间"><a href="#二-编译工作空间" class="headerlink" title="二.编译工作空间"></a>二.编译工作空间</h2><p>1.回到工作空间路径下,从src返回工作空间,即到xxx目录下</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span>..<br></code></pre></td></tr></table></figure><p>2.编译工作空间,编译过后就会多出两个文件夹,build和devel</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">catkin_make<br></code></pre></td></tr></table></figure><p><img src="https://img-blog.csdnimg.cn/202105272056222.png" alt="编译工作空间后"><br>编译过后xxx文件夹下如图所示,例此处 xxx 为 tuw_multi_robot.</p><h2 id="三-设置环境变量-告诉系统这是工作空间的一个路径-建议直接跳2永久添加进系统"><a href="#三-设置环境变量-告诉系统这是工作空间的一个路径-建议直接跳2永久添加进系统" class="headerlink" title="三.设置环境变量,告诉系统这是工作空间的一个路径,建议直接跳2永久添加进系统!!"></a>三.设置环境变量,告诉系统这是工作空间的一个路径,<strong>建议直接跳2永久添加进系统!!</strong></h2><p>1.添加环境变量,还是在上面的xxx文件夹下.(建议直接用2)</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> devel/setup.bash<br></code></pre></td></tr></table></figure><p>查看添加是否成功,执行此命令后能看到xxx就是成功了</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-variable">$ROS_PACKAGE_PATH</span><br></code></pre></td></tr></table></figure><p>此时,再roslaunch你的包就可以了.<br>不过!!!!当我们重新打开一个终端roslaunch的时候,还是找不到,原因是没有将路径全局地写进系统.</p><p>2.永久添加环境变量</p><p>2.1 写入.bashrc文件</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">gedit ~/.bashrc<br></code></pre></td></tr></table></figure><p>2.2 在.bashrc最下面加入环境变量,把xxx的文件路径加上devel/setup.bash,source进去.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> ......./xxx/devel/setup.bash<br></code></pre></td></tr></table></figure><p><img src="https://img-blog.csdnimg.cn/20210527211106879.png" alt="bashrc加入环境变量"><br>编辑好后点击save</p><p>2.3 </p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> devel/setup.bash<br></code></pre></td></tr></table></figure><p>此时roslaunch应该也可以了.</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>MARL</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>ubuntu16.04启动vrep V4.1.0、使用python API需要的文件</title>
+    <link href="/2021/01/19/vrep/"/>
+    <url>/2021/01/19/vrep/</url>
+    
+    <content type="html"><![CDATA[<h2 id="1-ubuntu16-04启动vrep-V4-1-0教育版方法（感觉它更名CoppeliaSim了）"><a href="#1-ubuntu16-04启动vrep-V4-1-0教育版方法（感觉它更名CoppeliaSim了）" class="headerlink" title="1.ubuntu16.04启动vrep V4.1.0教育版方法（感觉它更名CoppeliaSim了）"></a>1.ubuntu16.04启动vrep V4.1.0教育版方法（感觉它更名CoppeliaSim了）</h2><p>打开文件夹位置，输入：./coppeliaSim.sh</p><h2 id="2-要用vrep（coppeliaSim）python脚本的远程API，需要以下三项："><a href="#2-要用vrep（coppeliaSim）python脚本的远程API，需要以下三项：" class="headerlink" title="2.要用vrep（coppeliaSim）python脚本的远程API，需要以下三项："></a>2.要用vrep（coppeliaSim）python脚本的远程API，需要以下三项：</h2><ol><li>sim.py</li><li>simConst.py</li><li>remoteApi.dll, remoteApi.dylib or remoteApi.so (取决于你的操作系统)</li></ol><p>以上第1.2文件在CoppeliaSim的安装位置的：<em>programming/remoteApiBindings/python</em><br><img src="https://img-blog.csdnimg.cn/20210119162441475.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Zhbjk2MDkxOQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p>第3在<em>programming/remoteApiBindings/lib/lib</em>中<br><img src="https://img-blog.csdnimg.cn/20210119162441412.png" alt="在这里插入图片描述"></p><p>CoppeliaSim远程API功能的前缀都是”simx”。</p><h3 id="附python-remote-API使用说明书原文："><a href="#附python-remote-API使用说明书原文：" class="headerlink" title="附python remote API使用说明书原文："></a>附python remote API使用说明书原文：</h3><p><img src="https://img-blog.csdnimg.cn/20210119162441569.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Zhbjk2MDkxOQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>参考：<br>官方说明书 <a href="https://www.coppeliarobotics.com/helpFiles/index.html">https://www.coppeliarobotics.com/helpFiles/index.html</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>MARL</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
   
 </search>

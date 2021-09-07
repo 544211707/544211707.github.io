@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>gitpost</title>
+    <link href="/2021/09/07/gitpost/"/>
+    <url>/2021/09/07/gitpost/</url>
+    
+    <content type="html"><![CDATA[<p>首先你需要一个github账号，所有还没有的话先去注册吧！</p><p><a href="https://github.com/">https://github.com/</a></p><p>我们使用git需要先安装git工具，这里给出下载地址，下载后一路直接安装即可：</p><p><a href="https://git-for-windows.github.io/">https://git-for-windows.github.io/</a></p><p>1.进入Github首页，点击New repository新建一个项目</p><p><img src="https://images2015.cnblogs.com/blog/913913/201608/913913-20160823164154526-418441991.png" alt="img"></p><p> 2.填写相应信息后点击create即可 </p><p>Repository name: 仓库名称</p><p>Description(可选): 仓库描述介绍</p><p>Public, Private : 仓库权限（公开共享，私有或指定合作者）</p><p>Initialize this repository with a README: 添加一个README.md</p><p>gitignore: 不需要进行版本管理的仓库类型，对应生成文件.gitignore</p><p>license: 证书类型，对应生成文件LICENSE</p><p><img src="https://images2015.cnblogs.com/blog/913913/201608/913913-20160823165025370-49444506.png" alt="img"></p><p><img src="https://images2015.cnblogs.com/blog/913913/201608/913913-20160823165107308-439926006.png" alt="img"></p><p>4.点击Clone or dowload会出现一个地址，copy这个地址备用。</p><p><img src="https://images2015.cnblogs.com/blog/913913/201608/913913-20160823165450636-1167722003.png" alt="img"></p><p>5.接下来就到本地操作了，首先右键你的项目，如果你之前安装git成功的话，右键会出现两个新选项，分别为Git Gui Here,Git Bash Here,这里我们选择Git Bash Here，进入如下界面，Test_Bluetooth即为我的项目名。</p><p><img src="https://images2015.cnblogs.com/blog/913913/201608/913913-20160823171048308-194895299.png" alt="img"></p><p>6.接下来输入如下代码（关键步骤），把github上面的仓库克隆到本地</p><p>git clone <a href="https://github.com/CKTim/BlueTooth.git%EF%BC%88https://github.com/CKTim/BlueTooth.git%E6%9B%BF%E6%8D%A2%E6%88%90%E4%BD%A0%E4%B9%8B%E5%89%8D%E5%A4%8D%E5%88%B6%E7%9A%84%E5%9C%B0%E5%9D%80%EF%BC%89">https://github.com/CKTim/BlueTooth.git（https://github.com/CKTim/BlueTooth.git替换成你之前复制的地址）</a></p><p><img src="https://images2015.cnblogs.com/blog/913913/201608/913913-20160823171143980-741152042.png" alt="img"></p><p> 7.这个步骤以后你的本地项目文件夹下面就会多出个文件夹，该文件夹名即为你github上面的项目名，如图我多出了个Test文件夹，我们把本地项目文件夹下的所有文件（除了新多出的那个文件夹不用），其余都复制到那个新多出的文件夹下，</p><p><img src="https://images2015.cnblogs.com/blog/913913/201608/913913-20160823171209730-2089496483.png" alt="img"></p><p>8.接着继续输入命令 cd Test，进入Test文件夹</p><p><img src="https://images2015.cnblogs.com/blog/913913/201608/913913-20160823171454261-10363777.png" alt="img"></p><p>9.接下来依次输入以下代码即可完成其他剩余操作：</p><p>git add .     （注：别忘记后面的.，此操作是把Test文件夹下面的文件都添加进来）</p><p>git commit  -m  “提交信息”  （注：“提交信息”里面换成你需要，如“first commit”）</p><p>git push -u origin master  （注：此操作目的是把本地仓库push到github上面，此步骤需要你输入帐号和密码）</p><p> <img src="https://images2015.cnblogs.com/blog/913913/201608/913913-20160823171557823-3863512.png" alt="img"></p><p><img src="https://images2015.cnblogs.com/blog/913913/201608/913913-20160823171651808-1225335136.png" alt="img"></p><p><img src="https://images2015.cnblogs.com/blog/913913/201608/913913-20160823171818933-1506815566.png" alt="img"></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>JS高级04_进程与线程、浏览器模块、定时器、时间循环机制</title>
     <link href="/2021/08/29/JSadvance04/"/>
     <url>/2021/08/29/JSadvance04/</url>

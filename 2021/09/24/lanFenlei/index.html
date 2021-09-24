@@ -18,9 +18,25 @@
   <meta name="author" content="Fan">
   <meta name="keywords" content="">
   
-  <title>文章 - PolarBear</title>
+  <title>编译型和解释型、动态语言和静态语言、强类型定义语言和弱类型定义语言区别 - PolarBear</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
 
 
 
@@ -48,7 +64,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -135,9 +151,46 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="文章">
+            <span class="h2" id="subtitle" title="编译型和解释型、动态语言和静态语言、强类型定义语言和弱类型定义语言区别">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-09-24 15:42" pubdate>
+        2021年9月24日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      715 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      7
+       分钟
+    </span>
+  
+
+  
+  
+</div>
 
             
           </div>
@@ -150,100 +203,102 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 14 篇文章</p>
-  <hr>
-  
-  
-    
       
-      <p class="h5">2021</p>
-    
-    <a href="/2021/09/24/module/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">commonJS与ES6 module的区别</span>
-      <time style="float: right;">09-24</time>
-    </a>
-  
-    
-    <a href="/2021/09/24/promise/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">promise全家桶</span>
-      <time style="float: right;">09-24</time>
-    </a>
-  
-    
-    <a href="/2021/09/24/lanFenlei/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">编译型和解释型、动态语言和静态语言、强类型定义语言和弱类型定义语言区别</span>
-      <time style="float: right;">09-24</time>
-    </a>
-  
-    
-    <a href="/2021/09/07/gitpost/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">gitpost</span>
-      <time style="float: right;">09-07</time>
-    </a>
-  
-    
-    <a href="/2021/08/29/JSadvance04/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">JS高级04_进程与线程、浏览器模块、定时器、时间循环机制</span>
-      <time style="float: right;">08-29</time>
-    </a>
-  
-    
-    <a href="/2021/08/29/JSadvance03/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">JS高级03_对象的创建、继承、GC</span>
-      <time style="float: right;">08-29</time>
-    </a>
-  
-    
-    <a href="/2021/08/29/JSadvance02/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">JS高级02_原型、执行上下文、作用域、闭包</span>
-      <time style="float: right;">08-29</time>
-    </a>
-  
-    
-    <a href="/2021/08/29/JSadvance01/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">JS高级01_类型、对象、函数、Git基本操作</span>
-      <time style="float: right;">08-29</time>
-    </a>
-  
-    
-    <a href="/2021/08/29/Java-function/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Java各类的常用方法总结</span>
-      <time style="float: right;">08-29</time>
-    </a>
-  
-    
-    <a href="/2021/08/24/mapReduce/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">map reduce的使用</span>
-      <time style="float: right;">08-24</time>
-    </a>
-  
-</div>
 
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">编译型和解释型、动态语言和静态语言、强类型定义语言和弱类型定义语言区别</h1>
+            
+            <div class="markdown-body">
+              <p>编译型和解释型、动态语言和静态语言、强类型定义语言和弱类型定义语言区别</p>
+<h3 id="编译型和解释型的区别"><a href="#编译型和解释型的区别" class="headerlink" title="编译型和解释型的区别"></a>编译型和解释型的区别</h3><p> 先来看看编译型语言定义： </p>
+<p> 编译型语言首先是将源代码编译生成机器指令，再由机器运行机器码(二进制)。 </p>
+<p> 再来看看解释型语言的定义： </p>
+<p> 解释型语言的源代码不是直接翻译成机器指令，而是先翻译成中间代码，再由解释器对中间代码进行解释运行。 </p>
+<p> 咋看一眼，还是一脸懵逼。下面打个比方： </p>
+<p> * 编译型相当于用中英文词典（翻译器）将一本英文书一次性翻译（编译）成一本中文书。以后查看直接就是中文了。可想而知，以后读书（运行）会非常非常方便。 </p>
+<p> * 而解释型相当于用中英文词典（翻译器）将一本英文书读一段翻译一段（解释）中文。以后查看时还是需要重新翻译。这样效率会低一些，必须依赖解释器，但是跨平台性好。 </p>
+<h3 id="动态语言和静态语言"><a href="#动态语言和静态语言" class="headerlink" title="动态语言和静态语言"></a>动态语言和静态语言</h3><p> 我们常说的动态语言和静态语言，其实是指动态类型语言和静态类型语言。先来看看动态类型语言： </p>
+<p> 动态类型语言，是指数据类型的检查是在运行时做的。用动态类型语言编程时，不用给变量指定数据类型，该语言会在你第一次赋值给变量时，在内部记录数据类型。 </p>
+<p> 再来看看静态类型语言的定义： </p>
+<p> 静态类型语言，是指数据类型的检查是在运行前（如编译阶段）做的。 </p>
+<h3 id="强类型定义语言和弱类型定义语言"><a href="#强类型定义语言和弱类型定义语言" class="headerlink" title="强类型定义语言和弱类型定义语言"></a>强类型定义语言和弱类型定义语言</h3><p> （1）强类型定义语言：强制数据类型定义的语言。也就是说，一旦一个变量被指定了某个数据类型，如果不经过强制转换，那么它就永远是这个数据类型了。举个例子：如果你定义了一个整型变量a,那么程序根本不可能将a当作字符串类型处理。强类型定义语言是类型安全的语言。 </p>
+<p> （2）弱类型定义语言：数据类型可以被忽略的语言。它与强类型定义语言相反, 一个变量可以赋不同数据类型的值。 自动进行了隐式转换。</p>
+<p> 强类型定义语言在速度上可能略逊色于弱类型定义语言，但是强类型定义语言带来的严谨性能够有效的避免许多错误。另外，“这门语言是不是动态语言”与“这门语言是否类型安全”之间是完全没有联系的！</p>
 
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2021/page/2/#board">2</a><a class="extend next" rel="next" href="/archives/2021/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
-    </span>
-  </nav>
-
-
-
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/JavaScript/">JavaScript</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/09/24/promise/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">promise全家桶</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/09/07/gitpost/">
+                        <span class="hidden-mobile">gitpost</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -323,9 +378,15 @@
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
 
 
 

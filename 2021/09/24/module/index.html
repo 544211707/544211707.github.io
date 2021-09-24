@@ -18,7 +18,7 @@
   <meta name="author" content="Fan">
   <meta name="keywords" content="">
   
-  <title>gitpost - PolarBear</title>
+  <title>commonJS与ES6 module的区别 - PolarBear</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -151,7 +151,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="gitpost">
+            <span class="h2" id="subtitle" title="commonJS与ES6 module的区别">
               
             </span>
 
@@ -161,8 +161,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-09-07 22:04" pubdate>
-        2021年9月7日 晚上
+      <time datetime="2021-09-24 15:48" pubdate>
+        2021年9月24日 下午
       </time>
     </span>
   
@@ -173,7 +173,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      534 字
+      929 字
     </span>
   
 
@@ -183,7 +183,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      11
        分钟
     </span>
   
@@ -213,47 +213,48 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">gitpost</h1>
+            <h1 style="display: none">commonJS与ES6 module的区别</h1>
             
             <div class="markdown-body">
-              <p>首先你需要一个github账号，所有还没有的话先去注册吧！</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/">https://github.com/</a></p>
-<p>我们使用git需要先安装git工具，这里给出下载地址，下载后一路直接安装即可：</p>
-<p><a target="_blank" rel="noopener" href="https://git-for-windows.github.io/">https://git-for-windows.github.io/</a></p>
-<p>1.进入Github首页，点击New repository新建一个项目</p>
-<p><img src="https://images2015.cnblogs.com/blog/913913/201608/913913-20160823164154526-418441991.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p> 2.填写相应信息后点击create即可 </p>
-<p>Repository name: 仓库名称</p>
-<p>Description(可选): 仓库描述介绍</p>
-<p>Public, Private : 仓库权限（公开共享，私有或指定合作者）</p>
-<p>Initialize this repository with a README: 添加一个README.md</p>
-<p>gitignore: 不需要进行版本管理的仓库类型，对应生成文件.gitignore</p>
-<p>license: 证书类型，对应生成文件LICENSE</p>
-<p><img src="https://images2015.cnblogs.com/blog/913913/201608/913913-20160823165025370-49444506.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><img src="https://images2015.cnblogs.com/blog/913913/201608/913913-20160823165107308-439926006.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p>4.点击Clone or dowload会出现一个地址，copy这个地址备用。</p>
-<p><img src="https://images2015.cnblogs.com/blog/913913/201608/913913-20160823165450636-1167722003.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p>5.接下来就到本地操作了，首先右键你的项目，如果你之前安装git成功的话，右键会出现两个新选项，分别为Git Gui Here,Git Bash Here,这里我们选择Git Bash Here，进入如下界面，Test_Bluetooth即为我的项目名。</p>
-<p><img src="https://images2015.cnblogs.com/blog/913913/201608/913913-20160823171048308-194895299.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p>6.接下来输入如下代码（关键步骤），把github上面的仓库克隆到本地</p>
-<p>git clone <a target="_blank" rel="noopener" href="https://github.com/CKTim/BlueTooth.git%EF%BC%88https://github.com/CKTim/BlueTooth.git%E6%9B%BF%E6%8D%A2%E6%88%90%E4%BD%A0%E4%B9%8B%E5%89%8D%E5%A4%8D%E5%88%B6%E7%9A%84%E5%9C%B0%E5%9D%80%EF%BC%89">https://github.com/CKTim/BlueTooth.git（https://github.com/CKTim/BlueTooth.git替换成你之前复制的地址）</a></p>
-<p><img src="https://images2015.cnblogs.com/blog/913913/201608/913913-20160823171143980-741152042.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p> 7.这个步骤以后你的本地项目文件夹下面就会多出个文件夹，该文件夹名即为你github上面的项目名，如图我多出了个Test文件夹，我们把本地项目文件夹下的所有文件（除了新多出的那个文件夹不用），其余都复制到那个新多出的文件夹下，</p>
-<p><img src="https://images2015.cnblogs.com/blog/913913/201608/913913-20160823171209730-2089496483.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p>8.接着继续输入命令 cd Test，进入Test文件夹</p>
-<p><img src="https://images2015.cnblogs.com/blog/913913/201608/913913-20160823171454261-10363777.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p>9.接下来依次输入以下代码即可完成其他剩余操作：</p>
-<p>git add .     （注：别忘记后面的.，此操作是把Test文件夹下面的文件都添加进来）</p>
-<p>git commit  -m  “提交信息”  （注：“提交信息”里面换成你需要，如“first commit”）</p>
-<p>git push -u origin master  （注：此操作目的是把本地仓库push到github上面，此步骤需要你输入帐号和密码）</p>
-<p> <img src="https://images2015.cnblogs.com/blog/913913/201608/913913-20160823171557823-3863512.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><img src="https://images2015.cnblogs.com/blog/913913/201608/913913-20160823171651808-1225335136.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><img src="https://images2015.cnblogs.com/blog/913913/201608/913913-20160823171818933-1506815566.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+              <h3 id="commonJS-模块"><a href="#commonJS-模块" class="headerlink" title="commonJS 模块"></a>commonJS 模块</h3><p>commonJS的模块规范在Node中发扬光大，总的来说，它的特性有这几个：</p>
+<p>1.动态加载模块<br>commonJS和es6的最大区别大概就在于此了吧，commonJS模块的动态加载能够很轻松的实现懒加载，优化用户体验。</p>
+<p>2.加载整个模块<br>commonJS模块中，导出的是整个模块。</p>
+<p>3.每个模块皆为对象<br>commonJS模块都被视作一个对象。</p>
+<p>4.值拷贝<br>commonJS的模块输出和 函数的值传递相似，都是值的拷贝</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs delphi">B文件<br><span class="hljs-comment">//calculator.js</span><br>module.<span class="hljs-keyword">exports</span>=<span class="hljs-comment">&#123;name:&quot;calculator&quot;&#125;</span>;<br><br>A文件<br><span class="hljs-comment">//index.js</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">name</span>=require(<span class="hljs-string">&#x27;./calculator.js&#x27;</span>).<span class="hljs-keyword">name</span>;<br></code></pre></td></tr></table></figure>
+
+<p>当模块A加载模块B时，会执行B中的代码，并将其module.exports对象作为require函数的返回值进行返回。并且require的模块路径可以动态指定，并支持传入一个表达式或者一个if进行判断是否加载模块。因此可以看出，在commonJS模块被执行前，并没有办法确定明确的依赖关系，模块的导入、导出发生在代码的运行阶段。</p>
+<h3 id="es6-模块"><a href="#es6-模块" class="headerlink" title="es6 模块"></a>es6 模块</h3><p>1.静态解析<br>即在解析阶段就确定输出的模块，所以es6模块的import一般写在被引入文件的开头。</p>
+<p>2.模块不是对象<br>在es6里，每个模块并不会当做一个对象看待</p>
+<p>3.加载的不是整个模块<br>在es6模块中经常会看见一个模块中有好几个export 导出</p>
+<p>4.模块的引用<br>es6模块中，导出的并不是模块的值拷贝，而是这个模块的引用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//calculator.js</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> name=<span class="hljs-string">&#x27;calculator&#x27;</span>;<br><br><span class="hljs-comment">//index.js</span><br><span class="hljs-keyword">import</span> &#123;name&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./calculator.js&#x27;</span>;<br></code></pre></td></tr></table></figure>
+
+<p>ES6 Module的导入、导出语句都是声明式的，它不支持导入的路径是一个表达式，并且导入、导出语句必须位于模块的顶层作用域不能放到if语句中。因此ES6 Module是一个静态模块结构。</p>
+<p>ES6 Module相比与CommonJS的优点</p>
+<p>① 死代码检测和排除。我们可以用静态分析工具检测出哪些模块没有被调用过。<br>② 模块变量类型检查。<br>③ 编译器优化。ES6 Module支持直接导入变量，减少了引用层级，程序效率更高</p>
+<h3 id="值拷贝与动态映射"><a href="#值拷贝与动态映射" class="headerlink" title="值拷贝与动态映射"></a>值拷贝与动态映射</h3><p>在导入一个模块的时候，对于CommonJS来说获取的是一份导出值的拷贝；而ES6 Module则是值的动态映射，并且这个映射是可读的。</p>
+<h4 id="CommonJS值拷贝例子"><a href="#CommonJS值拷贝例子" class="headerlink" title="CommonJS值拷贝例子"></a>CommonJS值拷贝例子</h4><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs stata"><span class="hljs-comment">//calculator.js</span><br><span class="hljs-keyword">var</span> <span class="hljs-keyword">count</span>=0;<br>module.exports=&#123;<br>  <span class="hljs-keyword">count</span>:<span class="hljs-keyword">count</span>,<br>  ADD:function (a,b) &#123;<br>      <span class="hljs-keyword">count</span>+=1;<br>      <span class="hljs-keyword">return</span> a+b;<br>  &#125;<br>&#125;;<br><br><br><span class="hljs-comment">//inde.js</span><br><span class="hljs-keyword">var</span> <span class="hljs-keyword">count</span>=require(&#x27;./calculator&#x27;).<span class="hljs-keyword">count</span>;<br><span class="hljs-keyword">var</span> add=require(&#x27;./calculator&#x27;).ADD;<br><br>console.<span class="hljs-built_in">log</span>(<span class="hljs-keyword">count</span>);<br>add(2,3);<br>console.<span class="hljs-built_in">log</span>(<span class="hljs-keyword">count</span>);<br><br><span class="hljs-keyword">count</span> +=1;<br>console.<span class="hljs-built_in">log</span>(<span class="hljs-keyword">count</span>);<br></code></pre></td></tr></table></figure>
+
+<p>运行结果<br><img src="https://img-blog.csdnimg.cn/2020011118554177.png" srcset="/img/loading.gif" lazyload alt="COM"></p>
+<p>index.js中的count是对calculator.js中的count的一份拷贝，因此在调用ADD函数的时候，虽然改变了calculator.js中的count的值，但是并不会对index.js中导入时创建的副本造成影响。也就是说你在index.js中只要不是通过ADD函数对count的操作，都不会影响到calculator.js中的count。而是影响了副本的count</p>
+<h4 id="ES6-Module动态映射例子"><a href="#ES6-Module动态映射例子" class="headerlink" title="ES6 Module动态映射例子"></a>ES6 Module动态映射例子</h4><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs stata"><span class="hljs-comment">//calculator.js</span><br><span class="hljs-keyword">var</span> <span class="hljs-keyword">count</span>=0;<br><span class="hljs-keyword">const</span> ADD=function(a,b)&#123;<br>      <span class="hljs-keyword">count</span>+=1;<br>      <span class="hljs-keyword">return</span> a+b;<br>&#125;;<br>export &#123;<span class="hljs-keyword">count</span>,ADD&#125;<br><br><br><span class="hljs-comment">//inde.html</span><br>&lt;script <span class="hljs-keyword">type</span>=<span class="hljs-string">&quot;module&quot;</span>&gt;<br> import &#123;<span class="hljs-keyword">count</span>,ADD&#125; from &#x27;./src/calculator.js&#x27;;<br> console.<span class="hljs-built_in">log</span>(<span class="hljs-keyword">count</span>);<br> ADD(2,3);<br> console.<span class="hljs-built_in">log</span>(<span class="hljs-keyword">count</span>);<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<p>运行结果<br><img src="https://img-blog.csdnimg.cn/20200111190729892.png" srcset="/img/loading.gif" lazyload alt="ES6"></p>
+<p>可以发现导入的变量其实是对原有值的动态映射。index.html中的count是对calculator.js中count值的实时反映，当我们调用ADD函数更改了calculator.js中count值时，index.html中的count的值也会随之变化。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/haodawang/article/details/77199980">https://blog.csdn.net/haodawang/article/details/77199980</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42683219/article/details/103939237">https://blog.csdn.net/qq_42683219/article/details/103939237</a></p>
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/JavaScript/">JavaScript</a>
+                    
+                  </div>
                 
                 
               </div>
@@ -269,18 +270,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/09/24/lanFenlei/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">编译型和解释型、动态语言和静态语言、强类型定义语言和弱类型定义语言区别</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/08/29/JSadvance04/">
-                        <span class="hidden-mobile">JS高级04_进程与线程、浏览器模块、定时器、时间循环机制</span>
+                      <a href="/2021/09/24/promise/">
+                        <span class="hidden-mobile">promise全家桶</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
